@@ -867,7 +867,7 @@ int usb_dc_ep_write(const uint8_t ep, const uint8_t *const data,
 		return -EINVAL;
 	}
 
-	ret = k_sem_take(&ep_state->write_sem, K_NO_WAIT);
+	ret = k_sem_take(&ep_state->write_sem, K_MSEC(1));
 	if (ret) {
 		LOG_ERR("Unable to get write lock (%d)", ret);
 		return -EAGAIN;
